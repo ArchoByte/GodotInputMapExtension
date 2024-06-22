@@ -8,13 +8,14 @@ namespace GodotInputMapExtension;
 [Generator]
 public class InputMapExtensionGenerator : IIncrementalGenerator
 {
-    public const string ProjectFile = "project.godot";
+    public const string ProjectConfig = "project.godot";
+    public const string InputSection = "[input]";
     public const string InputDelimeter = "={";
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         IncrementalValueProvider<ImmutableArray<string>> textProvider = context.AdditionalTextsProvider
-            .Where(file => file.Path.EndsWith(ProjectFile, StringComparison.OrdinalIgnoreCase))
+            .Where(file => file.Path.EndsWith(ProjectConfig, StringComparison.OrdinalIgnoreCase))
             .Select((file, token) => file.GetText(token)?.ToString())
             .Where(text => text is not null)
             .Collect()!;
@@ -27,10 +28,17 @@ public class InputMapExtensionGenerator : IIncrementalGenerator
         // Validation
         // TODO: Add diagnostics
         if (args.Length < 1)
-            throw new FileNotFoundException($"{ProjectFile} file was not found");
+            throw new FileNotFoundException($"{ProjectConfig} file was not found");
 
         string content = args[0];
         var lines = content.Split('\n');
+
+        // Skip lines before input section
+        // NOTE: In most cases, the input section is the last in the project configuration file
+        int startIndex = Array.FindIndex(lines, w => string.Equals(w, InputSection, StringComparison.OrdinalIgnoreCase));
+        if (startIndex == -1)
+            throw new FormatException($"No input maps were found in {ProjectConfig} file");
+        lines = lines.Skip(startIndex + 1).ToArray();
 
         // Get input actions names
         var enumNames = lines.Select(s => s.Before(InputDelimeter))
