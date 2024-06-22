@@ -8,6 +8,21 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
+  <!-- Nuget configurations -->
+  <PropertyGroup>
+    <Title>GodotInputMapExtension</Title>
+    <Authors>ArchoByte</Authors>
+    <Description>Source generator, which provides an enum definition and helper class for mapped inputs</Description>
+    <RepositoryUrl>https://github.com/ArchoByte/GodotInputMapExtension</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ArchoByte/GodotInputMapExtension</PackageProjectUrl>
+    <PackageTags>Godot C# SourceGenerator</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true"
+      PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+
+  <!-- Project references -->
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" PrivateAssets="all" />
