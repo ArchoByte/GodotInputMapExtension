@@ -15,6 +15,7 @@
     <Description>Source generator, which provides an enum definition and helper class for mapped inputs</Description>
     <RepositoryUrl>https://github.com/ArchoByte/GodotInputMapExtension</RepositoryUrl>
     <PackageTags>Godot C# SourceGenerator</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true"
