@@ -60,6 +60,7 @@ public class InputMapExtensionGenerator : IIncrementalGenerator
         var helperConsts = zippedNames.Select(s => $"""public const string {s.pc} = "{s.sc}";""");
         var helperDictElems = zippedNames.Select(s => $$"""{ InputAction.{{s.pc}}, {{s.pc}} }""");
         string helperCode = $$"""
+            using System.Collections.Generic;
             using System.Collections.Immutable;
             namespace GodotInputMapExtension;
             public static class InputActionHelper
