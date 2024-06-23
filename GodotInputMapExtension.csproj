@@ -14,7 +14,6 @@
     <Authors>ArchoByte</Authors>
     <Description>Source generator, which provides an enum definition and helper class for mapped inputs</Description>
     <RepositoryUrl>https://github.com/ArchoByte/GodotInputMapExtension</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/ArchoByte/GodotInputMapExtension</PackageProjectUrl>
     <PackageTags>Godot C# SourceGenerator</PackageTags>
   </PropertyGroup>
   <ItemGroup>
