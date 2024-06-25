@@ -2,7 +2,19 @@
 
 A source generator, which provides an enum definition and helper class for mapped inputs.
 
-It exposes `GodotInputMapExtension` namespace containing:
+## Installation
+
+In order to use it, you need to specify `project.godot` in your `.csproj` file.
+
+```xml
+<ItemGroup>
+  <AdditionalFiles Include="project.godot" />
+</ItemGroup>
+```
+
+## Usage
+
+This generator exposes `GodotInputMapExtension` namespace containing:
 
 * `ActionInput` enum with elements corresponding to inputs specified in `Project > Input Map` tab.
 * `ActionInputHelper` static class that contains:
